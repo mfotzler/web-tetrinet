@@ -55,4 +55,5 @@ wss.on('connection', function (ws) {
   ws.on('error', wsclose);
 });
 
+console.log(`Setting up a proxy for TetriNET server ${host}:${port}`);
 console.log('Listening on', listenPort);

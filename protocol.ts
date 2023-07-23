@@ -183,7 +183,7 @@ export function connectAndHandshake(
     url: string, username: string,
     onhandshake: (playerNum: number, sock: WebSocket) => void) {
   // TODO: try a tetrifast connection and fall back to tetrisstart if it fails
-  let protocol = 'tetrifaster';
+  let protocol = 'tetrisstart';
 
   let s = protocol + ' ' + username + ' 1.13';
   let encoded = loginEncode(s);
