@@ -1,6 +1,8 @@
 import { BOARD_WIDTH, BOARD_HEIGHT, INITIAL_X } from "consts";
-import { draw_square, COLORS, randomColor, CLEARED_COLOR, SPECIAL_COLOR,
-         draw_text } from "draw_util";
+import {
+  draw_square, COLORS, randomColor, CLEARED_COLOR, SPECIAL_COLOR,
+  draw_text
+} from "draw_util";
 import { Shape, Piece, randomPiece } from "pieces";
 import { randInt } from "util";
 import { Special } from "specials";
@@ -132,7 +134,16 @@ export class BoardState {
 
     if (this.piece !== undefined) {
       this.piece.draw(ctx, this.x, this.y, this.orientation);
+      this.piece.drawGhost(ctx, this.x, this.getGhostPieceYValue(), this.orientation);
     }
+  }
+
+  private getGhostPieceYValue() {
+    let ghostY = this.y;
+    while(ghostY < BOARD_HEIGHT && !this.intersects(this.piece.shapes[this.orientation], this.x, ghostY)) {
+        ghostY += 1;
+    }
+    return ghostY-1;
   }
 
   removeLine = (lineNo: number): (typeof Special)[] => {

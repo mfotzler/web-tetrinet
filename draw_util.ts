@@ -16,6 +16,16 @@ export function draw_text(ctx: CanvasRenderingContext2D, x: number, y: number,
   ctx.fillText(text, new_x, new_y);
 }
 
+const ghostOpacity = 0.3;
+export const GHOST_COLORS: string[] = [
+  undefined,
+  `rgba(68,68,151, ${ghostOpacity})`, // blue
+  `rgba(151, 151, 68, ${ghostOpacity})`, // yellow
+  `rgba(68, 151, 68, ${ghostOpacity})`, // green
+  `rgba(151, 68, 151, ${ghostOpacity})`, // magenta
+  `rgba(151, 68, 68, ${ghostOpacity})`, // red
+];
+
 export const COLORS: string[] = [
   undefined,
   'rgb(68,68,151)', // blue

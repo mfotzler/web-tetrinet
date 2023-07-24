@@ -1,4 +1,4 @@
-import { draw_square, COLORS } from 'draw_util';
+import {draw_square, COLORS, GHOST_COLORS} from 'draw_util';
 import { randInt } from 'util';
 
 export class Shape {
@@ -24,10 +24,18 @@ export class Piece {
     this.color = color;
   }
 
-  draw(ctx: CanvasRenderingContext2D, x: number, y: number, orientation: number) {
+  private _draw(ctx: CanvasRenderingContext2D, x: number, y: number, orientation: number, colorString: string) {
     const shape = this.shapes[orientation % this.shapes.length];
-    ctx.fillStyle = COLORS[this.color];
+    ctx.fillStyle = colorString;
     shape.draw(ctx, x, y);
+  }
+
+  draw(ctx: CanvasRenderingContext2D, x: number, y: number, orientation: number) {
+    this._draw(ctx, x, y, orientation, COLORS[this.color]);
+  }
+
+  drawGhost(ctx: CanvasRenderingContext2D, x: number, y: number, orientation: number) {
+    this._draw(ctx, x, y, orientation, GHOST_COLORS[this.color]);
   }
 
   randomOrientation = () => {
