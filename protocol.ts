@@ -70,6 +70,8 @@ function partialCodeToFull(part: string): string {
 
 const INDEX_CODE_BASE = "3".charCodeAt(0);
 function fieldUpdate(state: GameState, player: number, fieldstring: string) {
+  if(fieldstring.length == 0)
+    return;
   let isPartial = partialCodeToFull(fieldstring[0]) !== null;
   let board = state.playerBoard(player);
 
